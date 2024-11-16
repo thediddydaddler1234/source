@@ -1,0 +1,33 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+local SoundService = game:GetService("SoundService")
+ 
+-- Find the Upgrades configuration
+local upgrades = ReplicatedStorage:FindFirstChild("Upgrades")
+if upgrades then
+    -- Find the Generator NumberValue
+    local generator = upgrades:FindFirstChild("Generator")
+    if generator and generator:IsA("NumberValue") then
+        -- Set the Max and Price attributes
+        generator:SetAttribute("Max", 100000000000000000000)
+        generator:SetAttribute("Price", 0)
+    end
+end
+ 
+-- Find the Assets folder
+local assets = ReplicatedStorage:FindFirstChild("Assets")
+if assets then
+    -- Move UpgradeShop and Gambler models to Workspace
+    local upgradeShop = assets:FindFirstChild("UpgradeShop")
+    local gambler = assets:FindFirstChild("Gambler")
+ 
+    if upgradeShop and upgradeShop:IsA("Model") then
+        upgradeShop.Parent = Workspace
+    end
+ 
+    if gambler and gambler:IsA("Model") then
+        gambler.Parent = Workspace
+    end
+end
+ 
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "(RESIDENCE MASSACRE)", Text = "LOADED! Have a fun time using our script (Infinite generator space and gambling! Public servers and endless mode works!)", Duration = 20})
